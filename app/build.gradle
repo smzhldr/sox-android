@@ -13,11 +13,26 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cFlags "-D_EXAMPLE_C_FLAG1", "-D_EXAMPLE_C_FLAG2"
+                cppFlags "-std=c++11", "-D__STDC_FORMAT_MACROS"
+                arguments "-DANDROID_TOOLCHAIN=clang"
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 }
