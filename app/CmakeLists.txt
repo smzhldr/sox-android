@@ -1,84 +1,205 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-set(dir ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jni/sox/src)
+set(sox_dir src/main/jni/sox/src)
+set(lpc10_dir src/main/jni/sox/lpc10)
+set(gsm_dir src/main/jni/sox/libgsm)
 
 
-#set(effects_sources
-#        ${dir}/sox.h
-#        ${dir}/sox.c
-#        ${dir}/effects.h
-#        ${dir}/effects.c
-        #        src/bend.c
-        #        src/biquad.c
-        #        src/biquads.c
-        #        src/chorus.c
-        #        src/compand.c
-        #        src/compandt.c
-        #        src/contrast.c
-        #        src/dcshift.c
-        #        src/delay.c
-        #        src/dft_filter.c
-        #        src/dither.c
-        #        src/divide.c
-        #        src/downsample.c
-        #        src/earwax.c
-        #        src/echo.c
-        #        src/echos.c
-        #        src/fade.c
-        #        src/fft4g.c
-        #        src/fir.c
-        #        src/firfit.c
-        #        src/flanger.c
-        #        src/gain.c
-        #        src/hilbert.c
-        #        src/input.c
-        #        src/loudness.c
-        #        src/mcompand.c
-        #        src/noiseprof.c
-        #        src/noisered.c
-        #        src/output.c
-        #        src/overdrive.c
-        #        src/pad.c
-        #        src/phaser.c
-        #        src/rate.c
-        #        src/remix.c
-        #        src/repeat.c
-        #        src/reverb.c
-        #        src/reverse.c
-        #        src/silence.c
-        #        src/sinc.c
-        #        src/skeleff.c
-        #        src/speed.c
-        #        src/splice.c
-        #        src/stat.c
-        #        src/stats.c
-        #        src/stretch.c
-        #        src/swap.c
-        #        src/synth.c
-        #        src/tempo.c
-        #        src/tremolo.c
-        #        src/trim.c
-        #        src/upsample.c
-        #        src/vad.c
-        #        src/vol.c
-#        )
+set(effects_sources
+        ${sox_dir}/bend.c
+        ${sox_dir}/biquad.c
+        ${sox_dir}/biquads.c
+        ${sox_dir}/chorus.c
+        ${sox_dir}/compand.c
+        ${sox_dir}/compandt.c
+        ${sox_dir}/contrast.c
+        ${sox_dir}/dcshift.c
+        ${sox_dir}/delay.c
+        ${sox_dir}/dft_filter.c
+        ${sox_dir}/dither.c
+        ${sox_dir}/divide.c
+        ${sox_dir}/downsample.c
+        ${sox_dir}/earwax.c
+        ${sox_dir}/echo.c
+        ${sox_dir}/echos.c
+        ${sox_dir}/fade.c
+        ${sox_dir}/fft4g.c
+        ${sox_dir}/fir.c
+        ${sox_dir}/firfit.c
+        ${sox_dir}/flanger.c
+        ${sox_dir}/gain.c
+        ${sox_dir}/hilbert.c
+        ${sox_dir}/input.c
+        ${sox_dir}/loudness.c
+        ${sox_dir}/mcompand.c
+        ${sox_dir}/noiseprof.c
+        ${sox_dir}/noisered.c
+        ${sox_dir}/output.c
+        ${sox_dir}/overdrive.c
+        ${sox_dir}/pad.c
+        ${sox_dir}/phaser.c
+        ${sox_dir}/rate.c
+        ${sox_dir}/remix.c
+        ${sox_dir}/repeat.c
+        ${sox_dir}/reverb.c
+        ${sox_dir}/reverse.c
+        ${sox_dir}/silence.c
+        ${sox_dir}/sinc.c
+        ${sox_dir}/skeleff.c
+        ${sox_dir}/speed.c
+        ${sox_dir}/splice.c
+        ${sox_dir}/stat.c
+        ${sox_dir}/stats.c
+        ${sox_dir}/stretch.c
+        ${sox_dir}/swap.c
+        ${sox_dir}/synth.c
+        ${sox_dir}/tempo.c
+        ${sox_dir}/tremolo.c
+        ${sox_dir}/trim.c
+        ${sox_dir}/upsample.c
+        ${sox_dir}/vad.c
+        ${sox_dir}/vol.c
+        )
+
+set(formats_sources
+        ${sox_dir}/8svx.c
+        ${sox_dir}/adpcm.c
+        ${sox_dir}/adpcms.c
+        ${sox_dir}/aifc-fmt.c
+        ${sox_dir}/aiff.c
+        ${sox_dir}/aiff-fmt.c
+        ${sox_dir}/al-fmt.c
+        ${sox_dir}/au.c
+        ${sox_dir}/avr.c
+        ${sox_dir}/cdr.c
+        ${sox_dir}/cvsd.c
+        ${sox_dir}/cvsd-fmt.c
+        ${sox_dir}/dat.c
+        ${sox_dir}/dvms-fmt.c
+        ${sox_dir}/f4-fmt.c
+        ${sox_dir}/f8-fmt.c
+        ${sox_dir}/g711.c
+        ${sox_dir}/g721.c
+        ${sox_dir}/g723_24.c
+        ${sox_dir}/g723_40.c
+        ${sox_dir}/g72x.c
+        ${sox_dir}/gsm.c
+        ${sox_dir}/gsrt.c
+        ${sox_dir}/hcom.c
+        ${sox_dir}/htk.c
+        ${sox_dir}/ima-fmt.c
+        ${sox_dir}/ima_rw.c
+        ${sox_dir}/la-fmt.c
+        ${sox_dir}/lpc10.c
+        ${sox_dir}/lu-fmt.c
+        ${sox_dir}/maud.c
+        ${sox_dir}/nulfile.c
+        ${sox_dir}/prc.c
+        ${sox_dir}/raw.c
+        ${sox_dir}/raw-fmt.c
+        ${sox_dir}/s1-fmt.c
+        ${sox_dir}/s2-fmt.c
+        ${sox_dir}/s3-fmt.c
+        ${sox_dir}/s4-fmt.c
+        ${sox_dir}/sf.c
+        ${sox_dir}/skelform.c
+        ${sox_dir}/smp.c
+        ${sox_dir}/sounder.c
+        ${sox_dir}/soundtool.c
+        ${sox_dir}/sox-fmt.c
+        ${sox_dir}/sphere.c
+        ${sox_dir}/tx16w.c
+        ${sox_dir}/u1-fmt.c
+        ${sox_dir}/u2-fmt.c
+        ${sox_dir}/u3-fmt.c
+        ${sox_dir}/u4-fmt.c
+        ${sox_dir}/ul-fmt.c
+        ${sox_dir}/voc.c
+        ${sox_dir}/vox.c
+        ${sox_dir}/vox-fmt.c
+        ${sox_dir}/wav.c
+        ${sox_dir}/wve.c
+        ${sox_dir}/xa.c
+        )
+
+set(gsm_sources
+        ${gsm_dir}/gsm.h
+        ${gsm_dir}/add.c
+        ${gsm_dir}/code.c
+        ${gsm_dir}/decode.c
+        ${gsm_dir}/gsm_create.c
+        ${gsm_dir}/gsm_decode.c
+        ${gsm_dir}/gsm_destroy.c
+        ${gsm_dir}/gsm_encode.c
+        ${gsm_dir}/gsm_option.c
+        ${gsm_dir}/long_term.c
+        ${gsm_dir}/lpc.c
+        ${gsm_dir}/preprocess.c
+        ${gsm_dir}/rpe.c
+        ${gsm_dir}/short_term.c
+        ${gsm_dir}/table.c
+        )
+
+set(lpc10_sources
+        ${lpc10_dir}/analys.c
+        ${lpc10_dir}/bsynz.c
+        ${lpc10_dir}/chanwr.c
+        ${lpc10_dir}/dcbias.c
+        ${lpc10_dir}/decode.c
+        ${lpc10_dir}/deemp.c
+        ${lpc10_dir}/difmag.c
+        ${lpc10_dir}/dyptrk.c
+        ${lpc10_dir}/encode.c
+        ${lpc10_dir}/energy.c
+        ${lpc10_dir}/f2clib.c
+        ${lpc10_dir}/ham84.c
+        ${lpc10_dir}/hp100.c
+        ${lpc10_dir}/invert.c
+        ${lpc10_dir}/irc2pc.c
+        ${lpc10_dir}/ivfilt.c
+        ${lpc10_dir}/lpcdec.c
+        ${lpc10_dir}/lpcenc.c
+        ${lpc10_dir}/lpcini.c
+        ${lpc10_dir}/lpfilt.c
+        ${lpc10_dir}/median.c
+        ${lpc10_dir}/mload.c
+        ${lpc10_dir}/onset.c
+        ${lpc10_dir}/pitsyn.c
+        ${lpc10_dir}/placea.c
+        ${lpc10_dir}/placev.c
+        ${lpc10_dir}/preemp.c
+        ${lpc10_dir}/prepro.c
+        ${lpc10_dir}/random.c
+        ${lpc10_dir}/rcchk.c
+        ${lpc10_dir}/synths.c
+        ${lpc10_dir}/tbdm.c
+        ${lpc10_dir}/voicin.c
+        ${lpc10_dir}/vparms.c
+        )
 
 add_library(sox
 
         SHARED
 
-        #${effects_sources}
-        src/main/jni/jni.cpp)
+        ${gsm_sources}
+        ${lpc10_sources}
 
-find_library( # Sets the name of the path variable.
-        log-lib
+        ${sox_dir}/soxconfig.h
+        ${effects_sources}
+        ${formats_sources}
 
-        # Specifies the name of the NDK library that
-        # you want CMake to locate.
-        log)
-
-target_link_libraries(
-        sox
-
-        ${log-lib}
+        ${sox_dir}/effects.c
+        ${sox_dir}/effects.h
+        ${sox_dir}/formats_i.c
+        ${sox_dir}/libsox_i.c
+        ${sox_dir}/effects_i.c
+        ${sox_dir}/effects_i_dsp.c
+        ${sox_dir}/getopt.c
+        ${sox_dir}/util.c
+        ${sox_dir}/util.h
+        ${sox_dir}/formats.c
+        ${sox_dir}/formats.h
+        ${sox_dir}/libsox.c
+        ${sox_dir}/xmalloc.c
+        ${sox_dir}/xmalloc.h
         )
